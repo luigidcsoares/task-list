@@ -23,5 +23,4 @@ self.addEventListener('fetch', e => {
     // If cached file exists, return it.
     caches.match(e.request).then(response => response || fetch(e.request))
   );
-  console.log('AOOOO');
 });

@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
-import { Page, Fab, Icon } from 'react-onsenui';
+import React from 'react';
+import { Navigator } from 'react-onsenui';
+
+import Home from './Home';
 
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
-class App extends Component {
-  
-  render () {
-    return (
-      <Page>
-        <Fab position='bottom right' onClick={() => console.log('TESTE')}>
-          <Icon icon='fa-plus' size={26} fixedWidth={false} style={{verticalAlign: 'middle'}} />
-        </Fab>
-      </Page>
-    );
+class App extends React.Component {
+  renderPage(route, navigator) {
+    const props = route.props || {};
+    props.navigator = navigator;
+
+    return React.createElement(route.component, props);
   }
 
+  render() {
+    return ( 
+      <Navigator
+        initialRoute={{ component: Home }}
+        renderPage={this.renderPage}
+      />
+    );
+  }
 }
 
 export default App;

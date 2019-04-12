@@ -6,6 +6,9 @@ const WebpackServiceWorker = require('serviceworker-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
+  performance: {
+    hints: false
+  },
   output: {
       path: Path.join(__dirname, '/dist'),
       filename: 'bundle.js'
