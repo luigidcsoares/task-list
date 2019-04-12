@@ -5,7 +5,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WebpackServiceWorker = require('serviceworker-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
   entry: './src/index.js',
   output: {
       path: Path.join(__dirname, '/dist'),
@@ -30,7 +29,7 @@ module.exports = {
         }
       )
     }, {
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(png|jpg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
       use: [
         {
           loader: 'file-loader'
@@ -46,7 +45,7 @@ module.exports = {
       template: './public/index.html' // Source html.
     }),
 
-    new ExtractTextPlugin({ filename: 'css/style.css' }),
+    new ExtractTextPlugin({ filename: 'style.css' }),
     new WebpackPwaManifest({
       inject: true,
       filename: 'manifest.webmanifest',

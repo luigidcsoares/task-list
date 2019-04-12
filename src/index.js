@@ -9,4 +9,4 @@ if ('serviceWorker' in navigator) {
   console.error('Service Worker not found!');
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('root'));
