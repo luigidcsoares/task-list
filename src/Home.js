@@ -8,16 +8,23 @@ import {
 } from 'react-onsenui';
 
 import Form from './Form';
+import { loadLocalData } from './utils';
 
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
 class Home extends React.Component {
   componentDidMount() {
+    this.state = { tasks: loadLocalData('tasks') };
+ 
     console.log('Adding event listener');
+    console.log(this.state);
+
     document.addEventListener('postpop', e => {
       if (e.enterPage.matches('#home')) {
-        // Update data.
+        console.log('updatado');
+        this.state = { tasks: loadLocalData('tasks') }; 
+        console.log(this.state);
       }
     });
   }

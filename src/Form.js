@@ -9,6 +9,8 @@ import {
   BackButton
 } from 'react-onsenui';
 
+import { loadLocalData } from './utils';
+
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
@@ -24,7 +26,13 @@ class Form extends React.Component {
     };
   }
 
-  popPage() {
+  handleAdd() {
+    // Get old data and update with new item.
+    let tasks = loadLocalData('tasks'); 
+    tasks.push(this.state);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    // Go back to home screen.
     this.props.navigator.popPage({data: this.state});
   }
 
@@ -60,7 +68,7 @@ class Form extends React.Component {
           />
         </div>
 
-        <Fab position='bottom right' onClick={this.popPage.bind(this)}>
+        <Fab position='bottom right' onClick={this.handleAdd.bind(this)}>
           <Icon icon='fa-check' size={26} fixedWidth={false} style={{verticalAlign: 'middle'}} />
         </Fab>
       </Page>

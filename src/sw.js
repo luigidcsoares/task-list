@@ -1,3 +1,5 @@
+CACHE_NAME = 'cache-v1'
+
 // Save the files to the user's device.
 // The 'install' event is called when the ServiceWorker starts up.
 self.addEventListener('install', e => {
@@ -6,7 +8,7 @@ self.addEventListener('install', e => {
   // Tells the browser that the install event is not finished until we have
   // cached all of our files.
   e.waitUntil(
-    caches.open('cache').then(cache => {
+    caches.open(CACHE_NAME).then(cache => {
             return cache.addAll([
         '/',
         '/index.html',
@@ -21,7 +23,11 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(cache => {
-      return Promise.all(cache.map(name => caches.delete(name)));
+      return Promise.all(cache.map(name => {
+        if (name !== CACHE_NAME) {
+          caches.delete(name);    
+        }
+      }));
     })
   );
 });
