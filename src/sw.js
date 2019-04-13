@@ -5,7 +5,7 @@ self.addEventListener('install', e => {
 
   // Tells the browser that the install event is not finished until we have
   // cached all of our files.
-  /*  e.waitUntil(
+  e.waitUntil(
     caches.open('cache').then(cache => {
             return cache.addAll([
         '/',
@@ -14,7 +14,16 @@ self.addEventListener('install', e => {
         '/manifest.webmanifest'
       ]);
     })
-  );*/
+  );
+});
+
+// Removing outdated caches.
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(cache => {
+      return Promise.all(cache.map(name => caches.delete(name)));
+    })
+  );
 });
 
 // Intercept requests and return the cached version instead.

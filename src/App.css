@@ -1,13 +1,20 @@
+body, html {
+  height: 100%;
+}
+
 .form {
-  width: 50%;
-  text-align: center;
-  margin-top: 50%;
-  margin-left: 25%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+  flex-direction: column;
+  height: 100%;
 }
 
 .form-group {
-  width: 100%;
-  margin: 15px auto;
+  width: 80%;
+  margin-bottom: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 
