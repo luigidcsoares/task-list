@@ -13,6 +13,15 @@ import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
 class Home extends React.Component {
+  componentDidMount() {
+    console.log('Adding event listener');
+    document.addEventListener('postpop', e => {
+      if (e.enterPage.matches('#home')) {
+        // Update data.
+      }
+    });
+  }
+
   pushPage() {
     this.props.navigator.pushPage({ component: Form });
   }
@@ -27,7 +36,7 @@ class Home extends React.Component {
 
   render () {
     return (
-      <Page renderToolbar={this.renderToolbar}>
+      <Page renderToolbar={this.renderToolbar} id='home'>
 
         <Fab position='bottom right' onClick={this.pushPage.bind(this)}>
           <Icon icon='fa-plus' size={26} fixedWidth={false} style={{verticalAlign: 'middle'}} />

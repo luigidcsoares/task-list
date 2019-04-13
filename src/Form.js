@@ -24,6 +24,10 @@ class Form extends React.Component {
     };
   }
 
+  popPage() {
+    this.props.navigator.popPage({data: this.state});
+  }
+
   renderToolbar() {
     return (
       <Toolbar>
@@ -56,7 +60,7 @@ class Form extends React.Component {
           />
         </div>
 
-        <Fab position='bottom right' onClick={() => console.log(this.state)}>
+        <Fab position='bottom right' onClick={this.popPage.bind(this)}>
           <Icon icon='fa-check' size={26} fixedWidth={false} style={{verticalAlign: 'middle'}} />
         </Fab>
       </Page>
