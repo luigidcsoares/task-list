@@ -5,16 +5,16 @@ self.addEventListener('install', e => {
 
   // Tells the browser that the install event is not finished until we have
   // cached all of our files.
-  e.waitUntil(
+  /*  e.waitUntil(
     caches.open('cache').then(cache => {
-      return cache.addAll([
+            return cache.addAll([
         '/',
         '/index.html',
         '/style.css',
         '/manifest.webmanifest'
       ]);
     })
-  );
+  );*/
 });
 
 // Intercept requests and return the cached version instead.
