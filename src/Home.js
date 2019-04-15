@@ -1,12 +1,13 @@
 import React from 'react';
 import { 
+  Checkbox,
   Fab, 
   Icon, 
   Navigator, 
   Page, 
   Toolbar, 
   List,
-  ListHeader
+  ListItem,
 } from 'react-onsenui';
 
 import Form from './Form';
@@ -16,17 +17,14 @@ import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
 class Home extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
     this.state = { tasks: loadLocalData('tasks') };
     
-    console.log('Adding event listener');
-    console.log(this.state);
-
     document.addEventListener('postpop', e => {
       if (e.enterPage.matches('#home')) {
-        console.log('updatado');
-        this.state = { tasks: loadLocalData('tasks') }; 
-        console.log(this.state);
+        this.setState({ tasks: loadLocalData('tasks') }); 
       }
     });
   }
@@ -45,23 +43,26 @@ class Home extends React.Component {
 
   renderRow(data, index) {
     return (
-      <ListItem key={`aaabbb-${index}`}>
-      {/* <div className='left'>
-        <img className='list__item__thumbnail'  />
-      </div>
-      <div className='center'>
-        "aaa"
-      </div> */}
+      <ListItem key={`task-${index}`} modifier='longdivider'>
+        <div className='left'>
+          <Checkbox onChange={e => console.log(e)} />
+        </div>
+        <div className='center'>
+          {data.name}
+        </div>
+        <div className='right'>
+          {data.date}
+        </div>
     </ListItem>
-    )
+    );
   }
+
   render () {
     return (
       <Page renderToolbar={this.renderToolbar} id='home'>
 
         <List position='center'
-          dataSource={this.state.ta}
-          renderHeader={() => <ListHeader>Pull down to refresh</ListHeader>}
+          dataSource={this.state.tasks}
           renderRow={this.renderRow}
         /> 
 
