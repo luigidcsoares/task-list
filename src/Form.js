@@ -23,6 +23,7 @@ class Form extends React.Component {
     this.state = {
       name: null,
       date: null,
+      completed: false
     };
   }
 

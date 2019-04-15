@@ -23,10 +23,16 @@ class Home extends React.Component {
     this.state = { tasks: loadLocalData('tasks') };
     
     document.addEventListener('postpop', e => {
+      // Update this component data when returning to it.
       if (e.enterPage.matches('#home')) {
         this.setState({ tasks: loadLocalData('tasks') }); 
       }
     });
+
+    // Binding event handlers in the constructor for better performance.
+    this.pushPage = this.pushPage.bind(this);
+    this.renderRow = this.renderRow.bind(this);
+    this.updateTask = this.updateTask.bind(this);
   }
 
   pushPage() {
@@ -41,11 +47,20 @@ class Home extends React.Component {
     );
   }
 
+  updateTask(e) {
+    let index = e.target.id;
+    let tasks = this.state.tasks;
+    tasks[index].completed = e.target.checked;
+
+    this.setState({ tasks: tasks });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
   renderRow(data, index) {
     return (
-      <ListItem key={`task-${index}`} modifier='longdivider'>
+      <ListItem modifier='longdivider'>
         <div className='left'>
-          <Checkbox onChange={e => console.log(e)} />
+          <Checkbox onChange={this.updateTask} input-id={index} checked={data.completed}/>
         </div>
         <div className='center'>
           {data.name}
@@ -66,7 +81,7 @@ class Home extends React.Component {
           renderRow={this.renderRow}
         /> 
 
-        <Fab position='bottom right' onClick={this.pushPage.bind(this)}>
+        <Fab position='bottom right' onClick={this.pushPage}>
           <Icon icon='fa-plus' size={26} fixedWidth={false} style={{verticalAlign: 'middle'}} />
         </Fab>
       </Page>
