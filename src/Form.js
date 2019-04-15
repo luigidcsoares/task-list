@@ -28,7 +28,7 @@ class Form extends React.Component {
 
   handleAdd() {
     // Get old data and update with new item.
-    let tasks = loadLocalData('tasks'); 
+    let tasks = loadLocalData('tasks') || [];
     tasks.push(this.state);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
