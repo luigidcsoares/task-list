@@ -4,7 +4,7 @@ A simple Task List app for studying PWA
 
 ### How to run it
 
-To run the project run the following commands on the terminal:
+To run the project, type the following commands on the terminal:
 
 ````````
 git clone https://github.com/luigidcsoares/pwa-task-list.git
