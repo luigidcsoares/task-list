@@ -2,6 +2,10 @@
 
 A simple Task List app for studying PWA
 
+### Final Result
+
+![](task-list.gif)
+
 ### How to run it
 
 To run the project, type the following commands on the terminal:
