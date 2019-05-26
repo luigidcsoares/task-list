@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+
+    <ion-list lines="full">
+      <ion-item *ngFor="let item of items">
+        <ion-checkbox [(ngModel)]="item.checked"
+                      (ionChange)="updateItems()">
+        </ion-checkbox>
+
+        <ion-label>{{ item.name }}</ion-label>
+        <ion-label>{{ item.date | date: 'dd/MM/yyyy' }}</ion-label>
+
+      </ion-item>
+    </ion-list>
+    
+    <ion-button expand="block"
+                [routerLink]="['/add-item/']"
+                routerDirection="forward">
+      Adicionar novo item
+    </ion-button>
+
+  </div>
+</ion-content>
