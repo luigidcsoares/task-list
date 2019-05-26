@@ -12,13 +12,13 @@
     <ion-list>
       <ion-row *ngFor="let item of items" >
             <ion-item>
-              <ion-checkbox checked={{item.checked}}></ion-checkbox>
+              <ion-checkbox [(ngModel)]="item.checked" (click)="setBadges()" ></ion-checkbox>
               <ion-label >{{item.name}}</ion-label>
               <ion-label >{{item.date| date: 'dd/MM/yyyy'}}</ion-label>
             </ion-item>            
       </ion-row>
     </ion-list>
   
-    <button ion-button color="primary" vertical="bottom" horizontal="center" (click)="itemTapped($event, item)">Adicionar novo item</button>
+    <button ion-button color="primary" vertical="bottom" horizontal="center" expand="full" (click)="itemTapped($event, item)">Adicionar novo item</button>
   </ion-content>
   
