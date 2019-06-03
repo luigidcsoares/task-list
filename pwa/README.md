@@ -13,7 +13,7 @@ To run the project, type the following commands on the terminal:
 ````````
 git clone https://github.com/luigidcsoares/task-list.git
 
-cd pwa-task-list
+cd task-list/pwa
 
 npm install
 
